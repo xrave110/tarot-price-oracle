@@ -1,4 +1,4 @@
-pragma solidity =0.5.16;
+pragma solidity ^0.8.0;
 
 interface ITarotPriceOracle {
     event PriceUpdate(
@@ -10,7 +10,9 @@ interface ITarotPriceOracle {
 
     function MIN_T() external pure returns (uint32);
 
-    function getPair(address uniswapV2Pair)
+    function getPair(
+        address veloPair
+    )
         external
         view
         returns (
@@ -22,11 +24,11 @@ interface ITarotPriceOracle {
             bool initialized
         );
 
-    function initialize(address uniswapV2Pair) external;
+    function initialize(address veloPair) external;
 
-    function getResult(address uniswapV2Pair)
-        external
-        returns (uint224 price, uint32 T);
+    function getResult(
+        address veloPair
+    ) external returns (uint224 price, uint32 T);
 
     function getBlockTimestamp() external view returns (uint32);
 }
